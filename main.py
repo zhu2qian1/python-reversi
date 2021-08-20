@@ -9,6 +9,13 @@ class ReversiGame:
         0: "empty",
         1: "white",
         2: "black",
+        3: "reserved",
+        4: "reserved",
+        5: "reserved",
+        6: "reserved",
+        7: "reserved",
+        8: "reserved",
+        9: "self",
     }
 
     initial_board: list[list[int]] = [
@@ -82,10 +89,11 @@ class ReversiGame:
             x_factor, y_factor = 1, -1
 
         for i in range(-8, 8, 1):
-            if i == 0:
-                continue
             x: int = x_coord + i * x_factor
             y: int = y_coord + i * y_factor
+            if i == 0:
+                addresses[(x, y)] = 9
+                continue
             if x < 0 or y < 0:
                 continue
             cell = self.tell_what_in_cell(x, y)
@@ -123,3 +131,6 @@ if __name__ == "__main__":
     arrays: list[dict[coordination, int]] = []
     for i in range(0, 4):
         arrays.append(game.fetch_direction_array(4, 2, i))
+
+    for i in arrays:
+        print(i)
