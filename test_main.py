@@ -1,6 +1,6 @@
 from main import ReversiGame
 import unittest
-from examples import testboard
+from examples import example_board
 
 
 class TestReversi(unittest.TestCase):

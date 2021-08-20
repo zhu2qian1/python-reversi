@@ -1,4 +1,4 @@
-from examples import testboard
+from examples import example_board
 
 coordination = tuple[int, int]
 
@@ -128,7 +128,7 @@ class ReversiGame:
 if __name__ == "__main__":
     game: ReversiGame = ReversiGame()
     game.draw_board()
-    game.board = testboard
+    game.board = example_board
     game.draw_board()
 
     arrays: list[dict[coordination, int]] = []
