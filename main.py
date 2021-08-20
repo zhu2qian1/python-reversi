@@ -94,16 +94,6 @@ class ReversiGame:
                 addresses[(x, y)] = cell
         return addresses
 
-    def is_adjacent_cells_filled(self, x_coord: int, y_coord: int) -> bool:
-        # ? delete needed?
-        for i in range(-1, 2):
-            for j in range(-1, 2):
-                if self.tell_what_in_cell(x_coord + j, y_coord + i) == -1:
-                    continue
-                if self.tell_what_in_cell(x_coord + j, y_coord + i):
-                    return True
-        return False
-
     def draw_board(self):
         for row in self.board:
             for cell in row:
@@ -129,5 +119,7 @@ if __name__ == "__main__":
     game.draw_board()
     game.board = testboard
     game.draw_board()
+
+    arrays: list[dict[coordination, int]] = []
     for i in range(0, 4):
-        print(game.fetch_direction_array(4, 2, i))
+        arrays.append(game.fetch_direction_array(4, 2, i))
