@@ -29,8 +29,8 @@ class ReversiGame:
         [0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
-    def is_turn_of_black(self, turnnum: int) -> bool:
-        return True if turnnum % 2 == 0 else False
+    def is_black_turn(self, turn_num: int) -> bool:
+        return True if turn_num % 2 == 0 else False
 
     def __init__(self) -> None:
         self.board: list[list[int]] = self.initial_board
@@ -39,7 +39,7 @@ class ReversiGame:
         return code in self.code_and_name
 
     def place_stone(self, code: int, x_coord: int, y_coord: int) -> None:
-        # ! imprement this
+        # ! implement this
         assert self.does_code_exist(code)
 
         # TODO: check if the stone is placable
