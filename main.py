@@ -1,7 +1,10 @@
 from examples import testboard
 
+coordination = tuple[int, int]
+
 
 class ReversiGame:
+
     code_and_name: dict[int, str] = {
         0: "empty",
         1: "white",
@@ -48,13 +51,24 @@ class ReversiGame:
 
     def fetch_all_direction_array(
         self, x_coord: int, y_coord: int
-    ) -> tuple[dict[tuple, int]]:
+    ) -> tuple[dict[coordination, int]]:
+        # ! implement this
         raise NotImplementedError
 
-    def fetch_direcion_array(
+    def fetch_direction_array(
         self, x_coord: int, y_coord: int, direction: int
-    ) -> dict[tuple, int]:
-        addresses: dict[tuple, int] = {}
+    ) -> dict[coordination, int]:
+        """fetch information of a row of stones along a direction.
+
+        Args:
+            x_coord (int): original x coordination of cell
+            y_coord (int): origin of cell
+            direction (int): 0: horizontal, 1: top-left to lower-right, 2: vertical, 3: lower-left to top-right
+
+        Returns:
+            dict[tuple[int, int], int]: position of cell and its stone stat
+        """
+        addresses: dict[tuple[int, int], int] = {}
         x_factor: int = 1
         y_factor: int = 0
 
@@ -70,8 +84,10 @@ class ReversiGame:
         for i in range(-8, 8, 1):
             if i == 0:
                 continue
-            x = x_coord + i * x_factor
-            y = y_coord + i * y_factor
+            x: int = x_coord + i * x_factor
+            y: int = y_coord + i * y_factor
+            if x < 0 or y < 0:
+                continue
             cell = self.tell_what_in_cell(x, y)
 
             if cell != -1:
@@ -113,3 +129,5 @@ if __name__ == "__main__":
     game.draw_board()
     game.board = testboard
     game.draw_board()
+    for i in range(0, 4):
+        print(game.fetch_direction_array(4, 2, i))
