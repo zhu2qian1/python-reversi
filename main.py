@@ -29,6 +29,9 @@ class ReversiGame:
         [0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
+    def is_turn_of_black(self, turnnum: int) -> bool:
+        return True if turnnum % 2 == 0 else False
+
     def __init__(self) -> None:
         self.board: list[list[int]] = self.initial_board
 
