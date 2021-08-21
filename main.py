@@ -59,11 +59,18 @@ class ReversiGame:
 
         return counters
 
+    def is_stone_placable(self, x_coord: int, y_coord: int, stone_code: int):
+        raise NotImplementedError
+
     def fetch_all_direction_array(
         self, x_coord: int, y_coord: int
     ) -> tuple[dict[coordination, int]]:
-        # ! implement this
-        raise NotImplementedError
+        arrays: list[dict[coordination, int]] = []
+
+        for i in range(4):
+            arrays.append(self.fetch_direction_array(x_coord, y_coord, i))
+
+        return tuple(arrays)
 
     def fetch_direction_array(
         self, x_coord: int, y_coord: int, direction: int
@@ -88,7 +95,7 @@ class ReversiGame:
             x_factor, y_factor = 1, 1
         elif direction == 2:
             x_factor, y_factor = 0, 1
-        else:
+        elif direction == 3:
             x_factor, y_factor = 1, -1
 
         for i in range(-8, 8, 1):
@@ -131,9 +138,6 @@ if __name__ == "__main__":
     game.board = example_board
     game.draw_board()
 
-    arrays: list[dict[coordination, int]] = []
-    for i in range(0, 4):
-        arrays.append(game.fetch_direction_array(4, 2, i))
-
-    for i in arrays:
+    arr = game.fetch_all_direction_array(4, 2)
+    for i in arr:
         print(i)
