@@ -6,6 +6,7 @@ coordination = tuple[int, int]
 class ReversiGame:
 
     code_and_name: dict[int, str] = {
+        -1: "error",
         0: "empty",
         1: "white",
         2: "black",
@@ -29,11 +30,11 @@ class ReversiGame:
         [0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
-    def is_black_turn(self, turn_num: int) -> bool:
-        return True if turn_num % 2 == 0 else False
-
     def __init__(self) -> None:
         self.board: list[list[int]] = self.initial_board
+
+    def is_black_turn(self, turn_num: int) -> bool:
+        return True if turn_num % 2 == 0 else False
 
     def does_code_exist(self, code: int) -> bool:
         return code in self.code_and_name
